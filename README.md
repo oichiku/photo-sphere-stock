@@ -1,1 +1,1 @@
-# Oichiku Photo Sphere Stock
+# Oichiku Photo Sphere Viewer
