@@ -1,24 +1,41 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <meta charset="utf-8" />
+    <title>Oichiku Photo Sphere Stock</title>
+</head>
+<body>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/photo-sphere-viewer.min.css"/>
 
-	<head>
-		<meta charset="utf-8" />
-		<title>Photo Sphere Viewer</title>
-		<meta name="viewport" content="initial-scale=1.0" />
-		<link rel="stylesheet" href="./Photo-Sphere-Viewer/examples/example1.css" />
-		<script src="./Photo-Sphere-Viewer/three.min.js"></script>
-		<script src="./Photo-Sphere-Viewer/photo-sphere-viewer.min.js"></script>
-		<script src="main.js"></script>
-	</head>
+<script src="https://cdn.jsdelivr.net/npm/three/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uevent@2/browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/photo-sphere-viewer.min.js"></script>
 
-	<body>
-		<header>
-			<h1>Example of use of Photo Sphere Viewer</h1>
-		</header>
+<div id="viewer"></div>
 
-		<div id="content">
-			<div id="your-pano"></div>
-		</div>
-	</body>
+<style>
+  /* the viewer container must have a defined size */
+  #viewer {
+    width: 100vw;
+    height: 50vh;
+  }
+</style>
 
+<script>
+  var viewer = new PhotoSphereViewer.Viewer({
+    container: document.querySelector('#viewer'),
+    panorama: getParam('path')
+  });
+
+  function getParam(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+</script>
+</body>
 </html>
